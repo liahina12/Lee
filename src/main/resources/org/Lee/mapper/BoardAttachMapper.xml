@@ -9,14 +9,6 @@ insert into tb1_attach(uuid,uploadPath,fileName,fileType,bno)
 values(#{uuid},#{uploadPath},#{fileName},#{fileType},#{bno})
 </insert>
 
-<delete id="delete">
-delete from tb1_attach where uuid = #{uuid}
-</delete>
-
-<delete id="deleteAll">
-delete from tb1_attach where bno = #{bno}
-</delete>
-
 <select id="findByBno" resultType="org.Lee.domain.BoardAttachVO">
 select * from tb1_attach where bno = #{bno}
 </select>
@@ -25,6 +17,15 @@ select * from tb1_attach where bno = #{bno}
 <!-- SELECT * FROM tb1_attach WHERE uploadPath > (NOW() - INTERVAL 7 DAY); -->
 select * from tb1_attach where uploadPath = to_char(sysdate -1, 'yyyy\mm\dd')
 </select>
+
+<delete id="delete">
+delete from tb1_attach where uuid = #{uuid}
+</delete>
+
+<delete id="deleteAll">
+delete from tb1_attach where bno = #{bno}
+</delete>
+
 
 </mapper>
 

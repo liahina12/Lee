@@ -31,7 +31,7 @@ public class MemberController {
 	}
 	//회원가입 정보 입력
 	@PostMapping("/joinPost")
-	public String postWrite(MemberDTO mdto) {
+	public String postWrite(MemberDTO mdto) throws Exception {
 		mservice.member(mdto);
 		return "redirect:/main";
 	}
@@ -86,6 +86,7 @@ public class MemberController {
 	        logger.info("전달된 데이터 : " + ldto);    // 일치하는 아이디, 비밀번호 경우 (로그인 성공)	        
 	        return "redirect:/main";	               
 	 }
+	 //로그아웃
 	 @PostMapping("/logout")
 	 public String logoutPost(HttpServletRequest request) throws Exception {
 		 HttpSession session = request.getSession();        
@@ -95,18 +96,18 @@ public class MemberController {
 	 }
 	 // 회원정보 
 	@GetMapping("/profile")
-	 public void profileGet(HttpSession session, Model model) {
+	 public void profileGet(HttpSession session, Model model) throws Exception {
 		 		    
 	 }
 	//회원정보 수정페이지
 	@GetMapping("/modify")
-	public void profileModify(HttpSession session, Model model) {
+	public void profileModify(HttpSession session, Model model) throws Exception {
 			
 	}
 	
 	//회원수정 
 	@PostMapping("/modifyPost")
-	public String updateMember(MemberDTO mdto, HttpSession session, Model model) {				 		
+	public String updateMember(MemberDTO mdto, HttpSession session, Model model) throws Exception {				 		
 		mservice.updateMember(mdto);
 		if(mdto.getName() != null &&mdto.getNicname() != null &&mdto.getPw() != null) {
 			session.setAttribute("member", mdto);
@@ -117,10 +118,9 @@ public class MemberController {
 			return "redirect:/member/profile";
 		}				
 	}
-	
 	//회원 탈퇴
 	@PostMapping("/deletePost")
-	public String deleteMember(MemberDTO mdto, HttpSession session, Model model) {
+	public String deleteMember(MemberDTO mdto, HttpSession session, Model model) throws Exception {
 		MemberDTO ldto =(MemberDTO)session.getAttribute("member");		
 		mservice.deleteMember(ldto);
 		logger.info("삭제된 데이터 값 : " + ldto);
@@ -128,11 +128,6 @@ public class MemberController {
 		logger.info("회원탈퇴");
 		return "redirect:/main";
 	}
-	
-	
-	
-	
-	
 	
 	
 	

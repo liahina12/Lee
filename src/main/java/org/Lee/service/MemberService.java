@@ -4,7 +4,7 @@ import org.Lee.domain.MemberDTO;
 
 public interface MemberService {
 
-	public void member(MemberDTO mdto); //회원가입
+	public void member(MemberDTO mdto) throws Exception; //회원가입
 	
     public int idCheck(String id) throws Exception;  //아이디 중복검사
     
@@ -12,11 +12,11 @@ public interface MemberService {
     
     public MemberDTO memberLogin(MemberDTO mdto) throws Exception; //로그인 
     
-  	public MemberDTO readMember(MemberDTO mdto); //회원정보 보기
+  	public MemberDTO readMember(MemberDTO mdto) throws Exception; //회원정보 보기
   	
-    public void updateMember(MemberDTO mdto);   //회원정보 수정
+    public void updateMember(MemberDTO mdto) throws Exception;   //회원정보 수정
   	
-  	public void deleteMember(MemberDTO mdto);  	//회원정보 삭제
+  	public void deleteMember(MemberDTO mdto) throws Exception;  	//회원정보 삭제
   	
   	
 }

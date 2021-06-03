@@ -13,6 +13,8 @@ public interface BoardMapper2 {
 	
 	public List<BoardVO2> getListWithPaging(Criteria cri);
 	
+	public int getTotalCount(Criteria cri);
+	
 	public void insert(BoardVO2 board);
 	
 	public void insertSelectKey(BoardVO2 board);
@@ -22,8 +24,6 @@ public interface BoardMapper2 {
 	public int delete(int bno);
 	
 	public int update(BoardVO2 board);
-	
-	public int getTotalCount(Criteria cri);
 	
 	public void updateReplyCnt(@Param("bno") int bno, @Param("amount") int amount);
 	

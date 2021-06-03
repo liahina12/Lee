@@ -130,7 +130,6 @@ span{
  <div id="container">
        
 	<form id="join" method="post">
-  
 		<div id="section">
 		  <div class="wrap">
 		    <div class="atem">아이디</div>
@@ -283,8 +282,7 @@ $(document).ready(function(){
         }else{
         	console.log("error");
         	return false;
-        }    
-        
+        }           
 	});
 	$('.id_input').on("mouseout",function(){		
 		if($('.id_input').val()==""){
@@ -296,49 +294,38 @@ $(document).ready(function(){
 		}	
 	 });
 	$('.pw_input').keyup(function(){
-		var regPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,20}$/;  //"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,10}"
-
+		var regPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,20}$/;  
 		if(!regPw.test($('.pw_input').val())){
-			$('.pw_ck').css('display','block');
-			
+			$('.pw_ck').css('display','block');			
 		}else{
-			$('.pw_ck').css('display','none');
-			
-		}		
-		
+			$('.pw_ck').css('display','none');			
+		}				
 	});
 	$('.name_input').keyup(function(){
 		var regName = /^[가-힣]{2,10}$/;
 		if(!regName.test($('.name_input').val())){
-			$('.name_ck').css('display','block');
-			
+			$('.name_ck').css('display','block');			
 		}else{
-			$('.name_ck').css('display','none');
-			
+			$('.name_ck').css('display','none');			
 		}		
 	});
 	$('.nic_input').keyup(function(){
 		var regNic = /^[가-힣]{2,10}$/;
 		if(!regNic.test($('.nic_input').val())){
-			$('.nic_ck').css('display','block');
-			
+			$('.nic_ck').css('display','block');		
 		}else{
-			$('.nic_ck').css('display','none');
-			
+			$('.nic_ck').css('display','none');			
 		}
 	});
 	$('.birth_input').keyup(function(){		
 		var regBirth = /^(19|20)\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[0-1])$/;
 		if(!regBirth.test( $('.birth_input').val())){
 			$('.birth_input_box_warn').css('display','block'); 
-			$('.birth_ck').css('display','none');
-			
+			$('.birth_ck').css('display','none');		
 		}else{
       	    $('.birth_input_box_warn').css('display','none');
-      	  $('.birth_ck').css('display','none');
-      	  
-        }
-		
+      	  $('.birth_ck').css('display','none');   	  
+        }		
 	});
 	$('.email_input').keyup(function(){	
 		var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
@@ -348,10 +335,8 @@ $(document).ready(function(){
             return false;
           } else{
         	  $('.email_input_box_warn').css('display','none');
-        	  $('.email_ck').css('display','none');
-        	  
-          }
-        
+        	  $('.email_ck').css('display','none');      	  
+          }        
 	});
 });
 

@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService  {
 	
 	//회원가입 insert
 	@Override
-	public void member(MemberDTO mdto) {		
+	public void member(MemberDTO mdto) throws Exception {		
 		mapper.member(mdto);		
 	}
 	// 아이디 중복체크
@@ -40,19 +40,19 @@ public class MemberServiceImpl implements MemberService  {
 	
 	//회원정보보기
 	@Override
-	public MemberDTO readMember(MemberDTO mdto) {
+	public MemberDTO readMember(MemberDTO mdto) throws Exception {
 		System.out.println("S : readMember()실행");
 								
      	return mapper.readMember(mdto);
 	}
 	//회원 정보 수정
 	@Override
-	public void updateMember(MemberDTO mdto) {
+	public void updateMember(MemberDTO mdto) throws Exception {
 		mapper.updateMember(mdto);
 	}
 	//회원 정보 탈퇴
 	@Override
-	public void deleteMember(MemberDTO mdto) {
+	public void deleteMember(MemberDTO mdto) throws Exception {
 		mapper.deleteMember(mdto);
 	}
 	

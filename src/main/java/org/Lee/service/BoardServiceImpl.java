@@ -101,8 +101,7 @@ public class BoardServiceImpl implements BoardService {
 	@Transactional	
 	@Override
 	public int updateViewCnt(int bno) {
-		return mapper.updateViewCnt(bno);
-		
+		return mapper.updateViewCnt(bno);		
 	}
 
 	@Override

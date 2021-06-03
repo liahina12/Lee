@@ -176,7 +176,7 @@ img {vertical-align: middle;
 			  <a href="http://localhost:8080/board/list2">캠핑즐기는사람들</a>
 			  <!-- 로그인 전  -->
 			  <c:if test="${ member == null }">
-			  <a href="http://localhost:8080/member/login" class="loginbu" >로그인</a> 
+			  <a href="http://localhost:8080/member/login" class="loginbu">로그인</a> 
 			  <a href="http://localhost:8080/member/join">회원가입</a>
 			  </c:if >    					   
 			  <!-- 로그인 후 -->  
@@ -287,11 +287,6 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " active";
 }
-/* $ajax({
-	type: 'post'
-	url:'/board/list',
-	
-}) */
 </script>
 </body>
 </html>
