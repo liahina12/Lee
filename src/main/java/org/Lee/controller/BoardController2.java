@@ -5,6 +5,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.Lee.domain.BoardAttachVO2;
 import org.Lee.domain.BoardVO2;
 import org.Lee.domain.Criteria;
@@ -31,7 +33,6 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/board/*")
 @AllArgsConstructor
 public class BoardController2 {
-
 
 	private BoardService2 service;
 	

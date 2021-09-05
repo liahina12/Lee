@@ -13,13 +13,9 @@
 </insert>
 
 <!--  게시판 목록 불러오기  -->
-<select id="selectBoard" resultType="org.Lee.domain.BoardVO">
+<select id="selectBoard" resultType="org.Lee.domain.BoardVO2">
 <![CDATA[
-	select rn, title, writer, vcount
-	 		from(select @rownum:=@rownum+1 as rn, title, writer, vcount
-	 			from(select @rownum:=0) as tmp, tb2_board
-	 			order by vcount desc) boardList
-	 		where rn <= 15 ;
+	select rn, title, writer, vcount from(select @rownum:=@rownum+1 as rn, title, writer, vcount from(select @rownum:=0) as tmp, tb2_board order by vcount desc) boardList where rn > 0 and rn <= 10 
 ]]>
 </select>
 
@@ -44,7 +40,7 @@ values(#{bno},#{title},#{content},#{writer})
   update tb2_board set title= #{title}, content=#{content}, writer=#{writer}, updatedate=sysdate() where bno =#{bno}
 </update>
 
-<sql id="criteria">
+<!-- <sql id="criteria">
 <trim prefix=" and (" suffix=")" prefixOverrides="or">
  <foreach item='type' collection="typeArr">
   <trim prefix="or">
@@ -62,25 +58,52 @@ values(#{bno},#{title},#{content},#{writer})
   </trim>
  </foreach>
 </trim>
-</sql>
+</sql> -->
 
 <select id="getListWithPaging" resultType="org.Lee.domain.BoardVO2">
- <![CDATA[select bno, title, content, writer, regdate, vcount,updatedate, replycnt
-from(
-      select @rownum:=@rownum+1 as rn, bno, title, content, writer, regdate, vcount,updatedate, replycnt
-      from (select @rownum:=0) as tmp, tb2_board
-      where 1=1
+ <![CDATA[select bno, title, content, writer, regdate, vcount,updatedate, replycnt from(select @rownum:=@rownum+1 as rn, bno, title, content, writer, regdate, vcount,updatedate, replycnt from (select @rownum:=0) as tmp, tb2_board where 1=1
 ]]>
-  <include refid="criteria"></include>   
-<![CDATA[
- order by bno desc 
- )boardList
- where rn > (#{pageNum}-1)*#{amount} and rn <= #{pageNum} * #{amount} ]]>
+<!--   <include refid="criteria"></include>    -->
+<trim prefix=" and (" suffix=")" prefixOverrides="or">
+ <foreach item='type' collection="typeArr">
+  <trim prefix="or">
+    <choose>
+     <when test="type== 'T'.toString()">
+       title like concat('%',#{keyword},'%')
+     </when>
+     <when test="type== 'C'.toString()">
+       content like concat('%',#{keyword},'%')
+     </when>
+     <when test="type== 'W'.toString()">
+       writer like concat('%',#{keyword},'%')
+     </when>
+    </choose>
+  </trim>
+ </foreach>
+</trim>
+<![CDATA[order by bno desc)boardList where rn > (#{pageNum}-1)*#{amount} and rn <= #{pageNum} * #{amount} ]]>
 </select>
 
 <select id="getTotalCount" resultType="int">
 select count(*) from tb2_board where bno > 0
- <include refid="criteria"></include>
+<!--  <include refid="criteria"></include> -->
+<trim prefix=" and (" suffix=")" prefixOverrides="or">
+ <foreach item='type' collection="typeArr">
+  <trim prefix="or">
+    <choose>
+     <when test="type== 'T'.toString()">
+       title like concat('%',#{keyword},'%')
+     </when>
+     <when test="type== 'C'.toString()">
+       content like concat('%',#{keyword},'%')
+     </when>
+     <when test="type== 'W'.toString()">
+       writer like concat('%',#{keyword},'%')
+     </when>
+    </choose>
+  </trim>
+ </foreach>
+</trim>
 </select>
 
 <update id="updateReplyCnt">

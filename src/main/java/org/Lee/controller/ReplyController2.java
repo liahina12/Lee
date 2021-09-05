@@ -1,6 +1,8 @@
 package org.Lee.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.Lee.domain.Criteria;
 import org.Lee.domain.ReplyPageDTO2;
 import org.Lee.domain.ReplyVO2;
@@ -8,6 +10,7 @@ import org.Lee.service.ReplyService2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,7 +66,7 @@ public class ReplyController2 {
 	
 	@DeleteMapping(value ="/{rno}", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> remove(@PathVariable("rno") int rno){
-		log.info("remove: " + rno);
+		log.info("remove2: " + rno);
 		return service.remove(rno)==1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		
 	}
